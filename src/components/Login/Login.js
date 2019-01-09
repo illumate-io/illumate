@@ -7,7 +7,7 @@ const axios = require('axios');
 class Login extends React.Component {
   state = {
     email: '',
-    password: ''
+    password: '',
   };
 
   submitForm = (e) => {
@@ -18,8 +18,8 @@ class Login extends React.Component {
     })
       .then((response) => {
         console.log(response);
-        localStorage.setItem('token', response.data.token)
-        this.setLog()
+        window.localStorage.setItem('token', response.data.token)
+        this.props.history.push('/home');
       })
       .catch((error) => {
         console.log(error);

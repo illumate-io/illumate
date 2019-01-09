@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Login from "./components/Login/Login";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
@@ -10,30 +10,22 @@ class App extends Component {
     isLoggedIn: false,
   };
 
-  componentDidMount() {
-    let token = localStorage.getItem('token');
-    console.log(token)
-    if (token) {
-      this.setState({ isLoggedIn: true })
-    }
-  }
-
   render() {
+    let token = localStorage.getItem('token');
     return (
       <BrowserRouter>
         <div className="App">
           <Switch>
             <Route exact path='/' render={() => (
-              this.state.isLoggedIn ? (
+              token ? (
                 <Redirect to='./home'/>
               ) : (
-                <Redirect to='./login'/>
-              )
+                <Redirect to='/login'/>
+              ))}/>
+            <Route path='/signup' component={Signup}/>
+            <Route path='/login' render={route => (
+              <Login {...route}/>
             )}/>
-            <Route path='/signup' component={Signup} />
-            <Route path='/login' render={(router) =>{
-              return <Login {...router} />
-            }} />
             <Route path='/home' component={Home}/>
           </Switch>
         </div>
