@@ -36,7 +36,7 @@ class NavigationBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Account</NavLink>
+                <NavLink href="/profile">Account</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink onClick={this.logout} href="/login">Logout</NavLink>

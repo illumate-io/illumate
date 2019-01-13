@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, FormGroup, Input, Label, Button} from "reactstrap";
+import {Form, FormGroup, Input, Label, Button, Alert} from "reactstrap";
 import './Signup.css'
 const axios = require('axios');
 
@@ -7,7 +7,8 @@ class Signup extends React.Component {
   state = {
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    error: false
   };
 
   submitForm = (e) => {
@@ -25,6 +26,7 @@ class Signup extends React.Component {
       })
       .catch(error => {
         console.log(error);
+        this.setState({error: true})
       });
   };
 
@@ -32,6 +34,7 @@ class Signup extends React.Component {
     return (
       <div className='container'>
         <h2>Sign Up</h2>
+        {this.state.error && <Alert color="danger">Email has already been used</Alert>}
         <div className='row'>
           <Form className='offset-md-4 col-md-4 border'>
             <FormGroup>
