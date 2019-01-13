@@ -11,17 +11,19 @@ class Signup extends React.Component {
   };
 
   submitForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios.post('http://localhost:2017/public/register', {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.confirmPassword
     })
-      .then(function (response) {
+      .then(response =>  {
         console.log('sending data!!!');
         console.log(response);
+        console.log(this.props);
+        this.props.history.push('/login');
       })
-      .catch(function (error) {
+      .catch(error => {
         console.log(error);
       });
   };

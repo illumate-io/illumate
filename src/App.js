@@ -22,7 +22,9 @@ class App extends Component {
               ) : (
                 <Redirect to='/login'/>
               ))}/>
-            <Route path='/signup' component={Signup}/>
+            <Route path='/signup' render={route => (
+              <Signup {...route}/>
+            )}/>
             <Route path='/login' render={route => (
               <Login {...route}/>
             )}/>
