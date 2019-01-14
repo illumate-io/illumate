@@ -19,7 +19,8 @@ class Login extends React.Component {
     })
       .then((response) => {
         console.log(response);
-        window.localStorage.setItem('token', response.data.token)
+        window.localStorage.setItem('token', response.data.token);
+        this.props.onSignIn();
         this.props.history.push('/home');
       })
       .catch((error) => {

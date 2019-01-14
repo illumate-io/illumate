@@ -1,11 +1,10 @@
 import React from "react";
-import NavigationBar from "../NavigationBar/NavigationBar";
 
 class Home extends React.Component {
   render() {
     return (
       <>
-        <NavigationBar/>
+        <div>Welcome to Illumate</div>
       </>
     )
   }

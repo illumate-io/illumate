@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, FormGroup, Input, Label, Button, Alert} from "reactstrap";
+import { Form, FormGroup, Input, Label, Button, Alert } from "reactstrap";
 import './Signup.css'
 const axios = require('axios');
 
@@ -19,9 +19,6 @@ class Signup extends React.Component {
       password2: this.state.confirmPassword
     })
       .then(response =>  {
-        console.log('sending data!!!');
-        console.log(response);
-        console.log(this.props);
         this.props.history.push('/login');
       })
       .catch(error => {

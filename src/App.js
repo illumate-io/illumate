@@ -5,20 +5,36 @@ import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
+import NavigationBar from "./components/NavigationBar/NavigationBar";
 
 class App extends Component {
   state = {
     isLoggedIn: false,
   };
 
-  render() {
+  onSignIn = () => {
+    this.getToken()
+  };
+
+  componentDidMount() {
+    this.getToken()
+  }
+
+  getToken = () => {
     let token = localStorage.getItem('token');
+    if (token) {
+      this.setState({ isLoggedIn: true })
+    }
+  }
+
+  render() {
     return (
       <BrowserRouter>
         <div className="App">
+          { this.state.isLoggedIn ? <NavigationBar/> : null }
           <Switch>
             <Route exact path='/' render={() => (
-              token ? (
+              this.state.isLoggedIn ? (
                 <Redirect to='./home'/>
               ) : (
                 <Redirect to='/login'/>
@@ -27,7 +43,7 @@ class App extends Component {
               <Signup {...route}/>
             )}/>
             <Route path='/login' render={route => (
-              <Login {...route}/>
+              <Login {...route} onSignIn={this.onSignIn}/>
             )}/>
             <Route path='/home' component={Home}/>
             <Route path='/profile' component={Profile}/>
