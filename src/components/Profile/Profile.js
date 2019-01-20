@@ -1,9 +1,49 @@
 import React from 'react';
+const axios = require('axios')
 
-const Profile = () => {
-  return (
-    <div>This is profile</div>
-  )
-};
+class Profile extends React.Component {
+  state = {
+    username: '',
+    school: '',
+    email: '',
+    type: ''
+  }
+
+  componentDidMount() {
+    const id = window.localStorage.getItem('id');
+    const token = window.localStorage.getItem('token');
+
+    axios.get('http://localhost:2017/private/user/' + id, {
+      headers: {
+        Authorization: 'Bearer ' + token, //the token is a variable which holds the token
+      }
+    })
+    .then(data => {
+      const { user } = data.data
+      this.setState({
+        username: user.username,
+        school: user.school,
+        email: user.email,
+        type: user.type
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  render(){
+    return (
+      <div>
+        <h2>Profile</h2>
+        <p>Name: {this.state.username}</p>
+        <p>School: {this.state.school}</p>
+        <p>Email: {this.state.email}</p>
+        <p>Type: {this.state.type}</p>
+      </div>
+    )
+  }
+}
+
 
 export default Profile

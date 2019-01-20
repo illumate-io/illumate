@@ -6,6 +6,7 @@ import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
+import Page404 from "./components/404/404page";
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
             )}/>
             <Route path='/home' component={Home}/>
             <Route path='/profile' component={Profile}/>
+            <Route component={Page404}/>
           </Switch>
         </div>
       </BrowserRouter>
