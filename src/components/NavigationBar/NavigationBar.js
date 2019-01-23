@@ -7,6 +7,8 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import {Link} from "react-router-dom";
+import './NavigationBar.css'
 
 class NavigationBar extends React.Component {
   state = {
@@ -26,13 +28,13 @@ class NavigationBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/home">illumate</NavbarBrand>
+        <Navbar className='navi' light expand="md">
+          <NavbarBrand tag={Link} to="/home">illumate</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/profile">Account</NavLink>
+                <NavLink tag={Link} to="/profile">Account</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink onClick={this.logout} href="/login">Logout</NavLink>

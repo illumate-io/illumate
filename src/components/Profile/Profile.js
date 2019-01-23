@@ -11,11 +11,10 @@ class Profile extends React.Component {
 
   componentDidMount() {
     const id = window.localStorage.getItem('id');
-    const token = window.localStorage.getItem('token');
 
     axios.get('http://localhost:2017/private/user/' + id, {
       headers: {
-        Authorization: 'Bearer ' + token, //the token is a variable which holds the token
+        Authorization: 'Bearer ' + this.props.token, //the token is a variable which holds the token
       }
     })
     .then(data => {
@@ -33,6 +32,9 @@ class Profile extends React.Component {
   }
 
   render(){
+    if (!this.props.token) {
+      this.props.history.push('/login')
+    }
     return (
       <div>
         <h2>Profile</h2>
