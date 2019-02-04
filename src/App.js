@@ -4,6 +4,8 @@ import Login from "./components/Login/Login";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
+import Profile from "./components/Profile/Profile";
+import Tutors from "./components/Tutors/Tutors";
 
 class App extends Component {
   state = {
@@ -29,6 +31,8 @@ class App extends Component {
               <Login {...route}/>
             )}/>
             <Route path='/home' component={Home}/>
+            <Route path='/profile' component={Profile}/>
+            <Route path ='/tutors' components={Tutors}/>
           </Switch>
         </div>
       </BrowserRouter>
