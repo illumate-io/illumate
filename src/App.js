@@ -8,6 +8,8 @@ import Profile from "./components/Profile/Profile";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Page404 from "./components/404/404page";
 
+// testing git
+
 class App extends Component {
   state = {
     isLoggedIn: false,
