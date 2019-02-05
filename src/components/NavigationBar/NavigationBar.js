@@ -7,36 +7,34 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
+import {Link} from "react-router-dom";
+import './NavigationBar.css'
 
 class NavigationBar extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    isOpen: false
+  };
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
-  }
+  };
 
-  logout() {
+  logout = () => {
     window.localStorage.clear()
-  }
+  };
 
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">illumate</NavbarBrand>
+        <Navbar className='navi' light expand="md">
+          <NavbarBrand tag={Link} to="/home">illumate</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Account</NavLink>
+                <NavLink tag={Link} to="/profile">Account</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink onClick={this.logout} href="/login">Logout</NavLink>
